@@ -1,0 +1,9 @@
+{% extends 'forms_app/index.html' %}
+
+{% block content %}
+
+<button> <a href="{% url 'edit' pk=theModel.pk %}">Edit Post</a></button>
+<h1>{{theModel.name}}</h1>
+<p>{{theModel.address}}</p>
+
+{% endblock %}

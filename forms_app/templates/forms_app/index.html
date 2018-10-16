@@ -4,14 +4,19 @@
 <div class="jumbotron">
 	<p>This is the forms app</p>
 </div>
+<div class="content">
+	{% block content %}
 	{% if form_list %}
 		<ul>
 			{% for eachItem in form_list %}
-				<li>{{ eachItem.name }}</li>
+				<a href="{% url 'detail' pk=eachItem.pk %}"><li>{{ eachItem.name }}</li></a>
 			{% endfor %}
 		</ul>
 		{% else %}
 		<p>Nothing available.</p>
 	{% endif %}
+{% endblock %}
+	<button><a href="{% url 'create' %}">Add New Entry</a> </button>
+</div>
 <script src="{% static 'forms_app/jquery-3.3.1.min.js' %}"></script>
 <script src="{% static 'forms_app/bootstrap.js' %}"></script>
