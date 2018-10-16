@@ -34,3 +34,8 @@ def edit(request, pk):
         form = NPForm(instance=theModel)
 
     return render(request,'forms_app/edit.html', {'form':form})
+
+def about(request):
+    form_list = NPModel.objects.all()
+    context = {'form_list': form_list}
+    return render(request, 'forms_app/about.html',context)

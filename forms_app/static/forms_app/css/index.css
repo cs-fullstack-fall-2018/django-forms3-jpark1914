@@ -1,0 +1,16 @@
+{% load static %}
+
+.jumbotron{
+    background-color: black;
+}
+
+p{
+
+}
+
+img{
+    display: flex;
+    justify-content: center;
+    width: auto;
+    height: 12em;
+}

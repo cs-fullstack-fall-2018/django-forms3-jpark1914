@@ -1,22 +1,42 @@
 {# Testing here #}
 {% load static %}
 <link rel="stylesheet" href="{% static 'forms_app/bootstrap.css' %}">
+<link rel="stylesheet" href="{% static 'forms_app/css/index.css' %}">
+
 <div class="jumbotron">
-	<p>This is the forms app</p>
+	{% block jumbo_content %}
+	<div class="row">
+	<h1> Welcome to the Memphis Non-Profit Page!</h1>
+	</div>
+	<div class="row">
+		<img class="" src="{% static 'forms_app/images/khara-woods-252667-unsplash.jpg'%}"/>
+	</div>
+	<div class="row">
+		<a href="{%url 'about' %}"> <h2> Click Here to Learn About this Developer</h2> </a>
+	</div>
+
+
+
+	{% endblock %}
 </div>
-<div class="content">
-	{% block content %}
-	{% if form_list %}
-		<ul>
-			{% for eachItem in form_list %}
-				<a href="{% url 'detail' pk=eachItem.pk %}"><li>{{ eachItem.name }}</li></a>
-			{% endfor %}
-		</ul>
-		{% else %}
-		<p>Nothing available.</p>
-	{% endif %}
-{% endblock %}
-	<button><a href="{% url 'create' %}">Add New Entry</a> </button>
+
+
+<div class="container content">
+	<div class="row">
+		{% block content %}
+		{% for eachItem in form_list %}
+		<div class="card col-6" style="width: 18rem;">
+			<div class="card-body">
+				<h5 class="card-title">{{ eachItem.name }}</h5>
+				<h6 class="card-subtitle mb-2 text-muted">{{eachItem.address}}</h6>
+				<p class="card-text">We have {{eachItem.employee_count}}, people working for us as of now.</p>
+				<a href="{% url 'detail' pk=eachItem.pk %}">Edit</a>
+			</div>
+		</div>
+		{% endfor %}
+		{% endblock %}
+	</div>
 </div>
 <script src="{% static 'forms_app/jquery-3.3.1.min.js' %}"></script>
 <script src="{% static 'forms_app/bootstrap.js' %}"></script>
+
