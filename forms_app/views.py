@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import NPModel
 from .forms import NPForm
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     form_list = NPModel.objects.all()
@@ -39,3 +40,10 @@ def about(request):
     form_list = NPModel.objects.all()
     context = {'form_list': form_list}
     return render(request, 'forms_app/about.html',context)
+
+@login_required
+def userIndex(request):
+
+    form_list = NPModel.objects.filter(username=request.user)
+    context = {'form_list': form_list}
+    return render(request, 'forms_app/index.html', context)
